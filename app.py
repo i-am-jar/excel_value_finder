@@ -9,7 +9,7 @@ def is_good_code(code):
 #Function to process spreadsheet
 def process_spreadsheet(file):
     df = pd.read_excel(file) #Change this function depending on spreadsheet format
-    df['Good Code'] = df['NAME OF COLUMN HERE'].apply(is_good_code)
+    df['Good Code'] = df['PUT NAME OF COLUMN HERE'].apply(is_good_code)
     return df
 
 #Streamlit app
