@@ -22,10 +22,10 @@ def main():
         columns = df.columns.tolist()
 
         # Let user select the column containing the codes
-        code_column = st.selectbox("Select the column containing the codes", options=columns)
+        code_column = st.selectbox("Select the column containing the values", options=columns)
 
         # Allow user to input good codes
-        good_codes_input = st.text_input("Enter the good codes separated by commas (e.g., code1,code2,code3)")
+        good_codes_input = st.text_input("Enter the good values separated by commas (e.g., code1,code2,code3)")
         good_codes = [code.strip() for code in good_codes_input.split(",")]
 
         if st.button("Process"):
@@ -38,6 +38,11 @@ def main():
 
             st.write("Highlighted Data:")
             st.write(df_processed[df_processed['Good Code'] == False])
+
+            # List values not provided in the list of good codes
+            values_not_provided = df_processed.loc[~df_processed[code_column].isin(good_codes), code_column].unique()
+            st.write("Values not provided in the list of good values:")
+            st.write(values_not_provided)
 
 if __name__ == "__main__":
     main()
